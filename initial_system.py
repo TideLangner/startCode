@@ -14,6 +14,8 @@ from matplotlib import pyplot as plt
 import numpy as np
 import pandas as pd
 
+from pvgis_iotools import poa_data_2020
+
 # --- Build System
 
 # set location, timezone and altitude of solar array, named Kalkbult
@@ -50,21 +52,27 @@ clear_sky = location.get_clearsky(times)
 clear_sky.plot(figsize=(16,9))
 '''
 
+'''
 # TMY data extraction from Europa PVGIS - more accurate than above
 # https://re.jrc.ec.europa.eu/pvg_tools/en/#TMY
 tmy = pd.read_csv('pvlib_kalkbult.csv', index_col=0)
 tmy.index = pd.to_datetime(tmy.index)
+'''
+
+# Another option is to do POA iot data extraction
+poa_data_2020 = pd.read_csv('poa_data_2020_io.csv', index_col=0)
+poa_data_2020.index = pd.to_datetime(poa_data_2020.index)
 
 # combine time series data with model chain
-modelchain.run_model(tmy)
+modelchain.run_model_from_poa(poa_data_2020)  # comment out _from_poa if not using poa
 # plot
 modelchain.results.ac.plot(figsize=(16,8))  # ac output of total system
 plt.show()
 
-# resample plot for a specific time window (per 'Month')
-modelchain.results.ac.resample('M').sum().plot(figsize=(16,8))
+# resample plot for a specific time window (per 'Month End')
+modelchain.results.ac.resample('ME').sum().plot(figsize=(16,8))
 plt.show()
 
 
-# ended at end of ep.7
+# ended half way through ep. 10
 # https://www.youtube.com/watch?v=9wDhl6jyKmk&list=PLK7k_QaEmaHsPk_mwzneTE2VTNCpYBiky&index=5
