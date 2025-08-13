@@ -18,7 +18,7 @@ poa_data_2020['poa_diffuse'] = poa_data_2020['poa_sky_diffuse'] + poa_data_2020[
 poa_data_2020['poa_global'] = poa_data_2020['poa_diffuse'] + poa_data_2020['poa_direct']
 
 # Extract necessary columns
-keep_cols = ['poa_global', 'poa_direct', 'poa_diffuse', 'temp_air']
+keep_cols = ['poa_global', 'poa_direct', 'poa_diffuse', 'temp_air', 'wind_speed']
 poa_data_2020 = poa_data_2020[keep_cols]
 
 print(poa_data_2020)

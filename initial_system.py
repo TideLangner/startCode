@@ -74,5 +74,5 @@ modelchain.results.ac.resample('ME').sum().plot(figsize=(16,8))
 plt.show()
 
 
-# ended half way through ep. 10
+# ended end of ep.11 - satisfied with learning
 # https://www.youtube.com/watch?v=9wDhl6jyKmk&list=PLK7k_QaEmaHsPk_mwzneTE2VTNCpYBiky&index=5
